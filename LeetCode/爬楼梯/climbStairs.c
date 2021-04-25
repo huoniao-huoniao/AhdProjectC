@@ -10,6 +10,6 @@ int climbStairs(int n)
     return num[n];
   }
   int result = climbStairs(n - 1) + climbStairs(n - 2);
-  num[n]=result;
+  num[n] = result;
   return result;
 }
