@@ -15,7 +15,6 @@ char *minNumber(int *nums, int numsSize)
 
 bool isSwap(int num, int nums)
 {
-  
 }
 
 void swap(int arr[], int i, int j)
