@@ -1,25 +1,42 @@
-#include <stdio.h>
-typedef int bool;
-#define ture 1;
-#define flase 0;
+#include <string.h>
+#define numberSize 20
+int sortcmp(char **pre, char **behind);
+char *minNumber(int *nums, int numsSize);
+void main()
+{
+  int str[10]={1,3,2,4,35,3,5,245,65,47};
+  minNumber(str,10);
+}
 char *minNumber(int *nums, int numsSize)
 {
-  for (int i = 0; i < numsSize - 1; i++)
+  if (numsSize == 0)
+    return NULL;
+  char **nChar = (char **)calloc(numsSize, sizeof(char *));
+  for (int i = 0; i < numsSize; i++)
   {
-    for (int j = 0; j < numsSize - 1 - i; j++)
-    {
-      swap(nums, i, j);
-    }
+    char *temp = (char *)calloc(numberSize, sizeof(char));
+    sprintf(temp, "%d", nums[i]);
+    nChar[i] = temp;
   }
+  qsort(nChar, numsSize, sizeof(char *), sortcmp);
+  char *_st = (char *)calloc(4000, sizeof(char));
+  for (int i = 0; i < numsSize; i++)
+  {
+    strcat(_st, nChar[i]);
+  }
+  return _st;
 }
-
-bool isSwap(int num, int nums)
+int sortcmp(char **pre, char **behind)
 {
-}
-
-void swap(int arr[], int i, int j)
-{
-  int temp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = temp;
+  char *temp1 = (char *)calloc(numberSize, sizeof(char));
+  char *temp2 = (char *)calloc(numberSize, sizeof(char));
+  strcat(strcat(temp1, *pre), *behind);
+  strcat(strcat(temp2, *behind), *pre);
+  if (strcmp(temp1, temp2) > 0)
+  {
+    return 1;
+  }
+  free(temp1);
+  free(temp2);
+  return 0;
 }
