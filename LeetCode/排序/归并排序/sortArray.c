@@ -8,22 +8,25 @@ int *sortArray(int *nums, int numsSize, int *returnSize)
   *returnSize = numsSize;
   if (numsSize == 0)
     return NULL;
-  mergeSort(nums, 0, numsSize-1);
+  mergeSort(nums, 0, numsSize - 1);
   return nums;
 }
 void mergeSort(int *nums, int start, int end)
 {
-  while (end >= start)
+  if (end <= start)
+    return;
+  mergeSort(nums, start, start + (end - start) / 2);
+  mergeSort(nums, (start + (end - start) / 2) + 1, end);
+  for(int i=start;i<=end;i++)
   {
-    if (nums[start] > nums[end])
+    for(int j=i+1;j<=end;j++)
     {
-      int temp = nums[start];
-      nums[start] = nums[end];
-      nums[end] = temp;
+      if(nums[i]>nums[j])
+      {
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+      }
     }
-    end--;
-    start++;
   }
-  mergeSort(nums, 0, (end - start) / 2);
-  mergeSort(nums, (end - start) / 2 + 1, end);
 }
