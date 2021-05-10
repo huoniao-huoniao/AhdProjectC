@@ -25,16 +25,17 @@ struct ListNode *insertionSortList(struct ListNode *head)
   while (q != NULL)
   {
     /*在头部*/
-    if (q->val < p->val)
+    if (q->val <= p->val)
     {
       dyNode->next = q;
+      pTail->next = q->next;
       q->next = p;
       p = dyNode->next;
       q = pTail->next;
       continue;
     }
     /*在尾部*/
-    if (q->val > pTail->val)
+    if (q->val >= pTail->val)
     {
       pTail->next = q;
       pTail = pTail->next;
@@ -42,17 +43,18 @@ struct ListNode *insertionSortList(struct ListNode *head)
       continue;
     }
     /*在中间*/
-    if (p->val <= q->val <= pTail->val)
+    if (p->val < q->val && q->val < pTail->val)
     {
       p = dyNode->next;
       while (p != pTail)
       {
-        if (p->val <= q->val <= p->next->val)
+        if (p->val <= q->val && q->val <= p->next->val)
         {
           pTail->next = q->next;
           q->next = p->next;
           p->next = q;
           q = pTail->next;
+          p = dyNode->next;
           break;
         }
         p = p->next;
