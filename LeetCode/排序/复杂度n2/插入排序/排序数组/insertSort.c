@@ -2,6 +2,7 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 #include <string.h>
+void swap(int *nums, int i, int j);
 int *insertSort(int *nums, int numsSize, int *returnSize)
 {
   *returnSize = numsSize;
@@ -15,6 +16,7 @@ int *insertSort(int *nums, int numsSize, int *returnSize)
     while (j >= 0 && nums[i] < nums[j])
     {
       swap(nums, i, j);
+      i=j;
       j--;
     }
   }
