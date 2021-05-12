@@ -19,7 +19,7 @@ int *getLeastNumbers(int *arr, int arrSize, int k, int *returnSize)
 void headSort(int *arr, int lenght, int k)
 {
   buildLeastHead(arr, lenght);
-  for (int i = lenght - 1; i > lenght - k; i--)
+  for (int i = lenght - 1; i > lenght - k - 1; i--)
   {
     swap(arr, 0, i);
     leastHeadBuild(arr, 0, i);
