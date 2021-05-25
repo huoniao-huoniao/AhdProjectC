@@ -9,7 +9,6 @@ int *sortArray(int *nums, int numsSize, int *returnSize)
   *returnSize = numsSize;
   //快速排序
   quickSort(nums, 0, numsSize - 1);
-
   return nums;
 }
 void quickSort(int *nums, int start, int end)
